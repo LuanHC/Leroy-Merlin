@@ -44,7 +44,7 @@ class ProductController extends Controller
      * @param  StoreProduct  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProduct $request)
+    public function store(Request $request)
     {
         $data = $request->file('file');
         \Excel::load($data, function($reader) {
