@@ -54,10 +54,9 @@ class ProductController extends Controller
             $category = $collect[0][1];
             $items = $reader->skipRows(3)->toArray();
             $data = [];
-            $category_id = \DB::table('categories')->where('name',$category)->first();
+            $category_id = \DB::table('categories')->where('name', $category)->first();
 
-            for($i=0; $i<count($items[0]); $i++)
-            {
+            for ($i=0; $i<count($items[0]); $i++) {
                 array_push($data,[
                     'category_id'=>$category_id->id,
                     'lm'=>$items[0][$i][0],
@@ -73,7 +72,9 @@ class ProductController extends Controller
             $collection = collect($data);   //turn data into collection
 
             foreach ($collection as $collect) {            
-              ProcessFile::dispatch(\DB::table('products')->insert($collect))->onQueue('products'); //insert chunked data
+                ProcessFile::dispatch(\DB::table('products')
+                    ->insert($collect))
+                    ->onQueue('products'); //insert chunked data
             }
         });
 
@@ -100,7 +101,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProduct $request, $id)
     {
         $data = $request->only([
             'id', 
@@ -126,11 +127,13 @@ class ProductController extends Controller
         return $this->service->destroy($id);
     }
 
-    public function verify(){
-        $queue = \DB::table('jobs')->where('payload','like','%ProcessFile%')->first();
-        if($queue){
+    public function verify()
+    {
+        $queue = \DB::table('jobs')->where('payload', 'like', '%ProcessFile%')->first();
+
+        if (!empty($queue)) {
             return 'The report in process';
-        }else{
+        } else {
             return 'Processed';
         }
     }

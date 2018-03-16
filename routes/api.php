@@ -13,4 +13,5 @@ use Illuminate\Http\Request;
 */
 
 Route::apiResource('products', 'ProductController');
+Route::apiResource('categories', 'CategoryController');
 Route::get('verify', 'ProductController@verify');

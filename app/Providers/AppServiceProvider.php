@@ -7,6 +7,8 @@ use Illuminate\Support\ServiceProvider;
 
 use App\Repositories\ProductRepository;
 use App\Repositories\EloquentProduct;
+use App\Repositories\CategoryRepository;
+use App\Repositories\EloquentCategory;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(ProductRepository::class, EloquentProduct::class);
+        $this->app->singleton(CategoryRepository::class, EloquentCategory::class);
     }
 }

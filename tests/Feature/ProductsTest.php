@@ -7,87 +7,220 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use App\Entities\Product;
 
 class ProductsTest extends TestCase
 {
+    use DatabaseTransactions;
+    
+    protected $response;
+
     /**
-     * Test to list products.
+     * Test to show product.
      *
      * @return void
      */
-    public function testIndex()
+    public function testShowProducts()
     {
-        $response = $this->get('/products');
-
-        $response->assertStatus(200);
+        $response = $this->call('GET', '/products')
+        ->assertStatus(200);
     }
+
     /**
-     * Test to import products.
+     * Test to get product.
      *
      * @return void
      */
-    public function testStore()
+    public function testGetProducts()
     {
-    	Storage::fake('products');
-    	$response = $this->json('POST', '/products', [
-            'products' => UploadedFile::fake()->create('test.xls','7')
-        ]);
-
-        // Assert the file was stored...
-        Storage::disk('products')->assertExists('test.xls');
-
-        // Assert a file does not exist...
-        Storage::disk('products')->assertMissing('missing.xls');
+        $response = $this->call('GET', '/products/1')
+        ->assertStatus(200);
     }
-    /**
-     * Test to show list.
-     *
-     * @return void
-     */
-    public function testShow()
+
+
+    public function test_upload_works()
     {
-        $response = $this->get('/products/1');
+        $stub = __DIR__.'/file/test.xlsx';
+        $name = str_random(8).'.xlsx';
+        $path = sys_get_temp_dir().'/'.$name;
 
-        $response->assertStatus(200);
+        copy($stub, $path);
+
+        $file = new UploadedFile(
+            $path,
+            $name,
+            filesize($path),
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            null,
+            true
+        );
+
+        $response = $this->call('POST', '/products', [
+            'file' => $file,
+        ])->getContent();
+
+        $this->assertEquals('Success',$response);
     }
+    
     /**
      * Test to update product.
      *
      * @return void
      */
-    public function testUpdate()
+    public function testUpdateProduct()
     {
-        $response = $this->json('PUT', '/products/1', [
-        	'category_id' => '1',
-        	'lm' => '1111',
-        	'name' => 'Product Test',
-        	'free_shipping' => '1',
-        	'description' => 'Description Test',
-        	'price' => '111'
-        ]);
 
-        $response->assertStatus(200);
+        $product = [
+            "id" => 1,
+            "category_id" => 1,
+            "lm" => 1001,
+            "name" => "Furadeira X",
+            "free_shipping" => 0,
+            "description" => "Furadeira eficiente X",
+            "price" => 100
+        ];
+
+        $response = $this->call('PUT', '/products/1', [
+            'id' => '1',
+            'category_id' => '1',
+            'lm' => '1001',
+            'name' => 'Furadeira X',
+            'free_shipping' => '0',
+            'description' => 'Furadeira eficiente X',
+            'price' => 100.00,
+        ])->assertStatus(200)->decodeResponseJson();
+
+        $this->assertContains($product, $response);
     }
+
+    /**
+     * Test to update product with no Id.
+     *
+     * @return void
+     */
+    public function testUpdateProductWithoutId()
+    {
+        $response = $this->call('PUT', '/products/1', [
+            'category_id' => '1',
+            'lm' => '1001',
+            'name' => 'Furadeira X',
+            'free_shipping' => '0',
+            'description' => 'Furadeira eficiente X',
+            'price' => 100.00,
+        ])->assertStatus(422);
+    }
+
+    /**
+     * Test to update product with no categoryId.
+     *
+     * @return void
+     */
+    public function testUpdateProductWithoutCategoryId()
+    {
+        $response = $this->call('PUT', '/products/1', [
+            'id' => '1',
+            'lm' => '1001',
+            'name' => 'Furadeira X',
+            'free_shipping' => '0',
+            'description' => 'Furadeira eficiente X',
+            'price' => 100.00,
+        ])->assertStatus(422);
+    }
+
+    /**
+     * Test to update product with no lm.
+     *
+     * @return void
+     */
+    public function testUpdateProductWithoutCategoryLm()
+    {
+        $response = $this->call('PUT', '/products/1', [
+            'id' => '1',
+            'category_id' => '1',
+            'name' => 'Furadeira X',
+            'free_shipping' => '0',
+            'description' => 'Furadeira eficiente X',
+            'price' => 100.00,
+        ])->assertStatus(422);
+    }
+
+    /**
+     * Test to update product with no name.
+     *
+     * @return void
+     */
+    public function testUpdateProductWithoutCategoryName()
+    {
+        $response = $this->call('PUT', '/products/1', [
+            'id' => '1',
+            'category_id' => '1',
+            'lm' => '1001',
+            'free_shipping' => '0',
+            'description' => 'Furadeira eficiente X',
+            'price' => 100.00,
+        ])->assertStatus(422);
+    }
+
+    /**
+     * Test to update product with no free_shipping.
+     *
+     * @return void
+     */
+    public function testUpdateProductWithoutCategoryFreeShipping()
+    {
+        $response = $this->call('PUT', '/products/1', [
+            'id' => '1',
+            'category_id' => '1',
+            'lm' => '1001',
+            'name' => 'Furadeira X',
+            'description' => 'Furadeira eficiente X',
+            'price' => 100.00,
+        ])->assertStatus(422);
+    }
+
+    /**
+     * Test to update product with no description.
+     *
+     * @return void
+     */
+    public function testUpdateProductWithoutCategoryDescription()
+    {
+        $response = $this->call('PUT', '/products/1', [
+            'id' => '1',
+            'category_id' => '1',
+            'lm' => '1001',
+            'name' => 'Furadeira X',
+            'free_shipping' => '0',
+            'price' => 100.00,
+        ])->assertStatus(422);
+    }
+
+    /**
+     * Test to update product with no price.
+     *
+     * @return void
+     */
+    public function testUpdateProductWithoutCategoryPrice()
+    {
+        $response = $this->call('PUT', '/products/1', [
+            'id' => '1',
+            'category_id' => '1',
+            'lm' => '1001',
+            'name' => 'Furadeira X',
+            'free_shipping' => '0',
+            'description' => 'Furadeira eficiente X',
+        ])->assertStatus(422);
+    }
+
     /**
      * Test to delete product.
      *
      * @return void
      */
-    public function testDestroy()
+    public function testDropProduct()
     {
-        $response = $this->delete('/products/11');
-
-        $response->assertStatus(200);
-    }
-    /**
-     * Test to show list.
-     *
-     * @return void
-     */
-    public function testVerify()
-    {
-        $response = $this->get('/verify');
-
-        $response->assertStatus(200);
+        $response = $this->call('DELETE', '/products/1')
+        ->assertStatus(200);
     }
 }

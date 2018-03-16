@@ -34,11 +34,20 @@ class ProductService extends BaseService
         try {
             $this->setParseInclude($include);
             $collection = $this->repository->all($include);
-        
         } catch (RelationNotFoundException $e) {
-            return $this->setStatus(500)->error($e->getMessage(), $e->getLine(), $e->getCode());
+            return $this->setStatus(500)
+            ->error(
+                $e->getMessage(),
+                $e->getLine(),
+                $e->getCode()
+            );
         } catch (Exception $e) {
-            return $this->setStatus(400)->error($e->getMessage(), $e->getLine(), $e->getCode());
+            return $this->setStatus(400)
+            ->error(
+                $e->getMessage(),
+                $e->getLine(),
+                $e->getCode()
+            );
         }
 
         return $this->setStatus(200)
@@ -57,9 +66,19 @@ class ProductService extends BaseService
             $item = $this->repository->store($data);
 
         } catch (ModelNotFoundException $e) {
-            return $this->setStatus(404)->error($e->getMessage(), $e->getLine(), $e->getCode());
+            return $this->setStatus(404)
+            ->error(
+                $e->getMessage(),
+                $e->getLine(),
+                $e->getCode()
+            );
         } catch(Exception $e) {
-            return $this->setStatus(400)->error($e->getMessage(), $e->getLine(), $e->getCode());
+            return $this->setStatus(400)
+            ->error(
+                $e->getMessage(),
+                $e->getLine(),
+                $e->getCode()
+            );
         }
 
         return $this->setStatus(201)
@@ -80,11 +99,26 @@ class ProductService extends BaseService
             $item = $this->repository->show($include, $id);
 
         } catch (ModelNotFoundException $e) {
-            return $this->setStatus(404)->error($e->getMessage(), $e->getLine(), $e->getCode());
+            return $this->setStatus(404)
+            ->error(
+                $e->getMessage(),
+                $e->getLine(),
+                $e->getCode()
+            );
         } catch (RelationNotFoundException $e) {
-            return $this->setStatus(500)->error($e->getMessage(), $e->getLine(), $e->getCode());
+            return $this->setStatus(500)
+            ->error(
+                $e->getMessage(),
+                $e->getLine(),
+                $e->getCode()
+            );
         } catch (Exception $e) {
-            return $this->setStatus(400)->error($e->getMessage(), $e->getLine(), $e->getCode());
+            return $this->setStatus(400)
+            ->error(
+                $e->getMessage(),
+                $e->getLine(),
+                $e->getCode()
+            );
         }
 
         return $this->setStatus(200)
@@ -104,9 +138,19 @@ class ProductService extends BaseService
             $item = $this->repository->update($data, $id);
         
         } catch (ModelNotFoundException $e) {
-            return $this->setStatus(404)->error($e->getMessage(), $e->getLine(), $e->getCode());
+            return $this->setStatus(404)
+            ->error(
+                $e->getMessage(),
+                $e->getLine(),
+                $e->getCode()
+            );
         } catch(Exception $e) {
-            return $this->setStatus(400)->error($e->getMessage(), $e->getLine(), $e->getCode());
+            return $this->setStatus(400)
+            ->error(
+                $e->getMessage(),
+                $e->getLine(),
+                $e->getCode()
+            );
         }
 
         return $this->setStatus(200)
@@ -125,9 +169,19 @@ class ProductService extends BaseService
             $this->repository->destroy($id);
 
         } catch (ModelNotFoundException $e) {
-            return $this->setStatus(404)->error($e->getMessage(), $e->getLine(), $e->getCode());
+            return $this->setStatus(404)
+            ->error(
+                $e->getMessage(),
+                $e->getLine(),
+                $e->getCode()
+            );
         } catch(Exception $e) {
-            return $this->setStatus(400)->error($e->getMessage(), $e->getLine(), $e->getCode());
+            return $this->setStatus(400)
+            ->error(
+                $e->getMessage(),
+                $e->getLine(),
+                $e->getCode()
+            );
         }
 
         return $this->setStatus(200)
