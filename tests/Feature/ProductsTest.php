@@ -60,7 +60,7 @@ class ProductsTest extends TestCase
             'file' => $file,
         ])->getContent();
 
-        $this->assertEquals('Success',$response);
+        $this->assertContains('"status_code":201', $response);
     }
     
     /**

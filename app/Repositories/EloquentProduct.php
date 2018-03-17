@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Entities\Product;
+use App\Jobs\ProcessFile;
+use Carbon\Carbon;
 
 class EloquentProduct implements ProductRepository
 {
@@ -10,7 +12,6 @@ class EloquentProduct implements ProductRepository
      * @var Product
      */
     protected $entity;
-
     /**
      * EloquentProduct constructor.
      * @param Product $entity
@@ -54,10 +55,40 @@ class EloquentProduct implements ProductRepository
      * @param array $attributes
      * @return App\Entities\Product
      */
-    public function store(array $attributes)
+    public function store($attributes)
     {
-        $item = $this->entity->create($attributes);
-        return $item;
+        $return = array();
+        \Excel::load($attributes, function($reader) use (&$return) {
+            // Getting all results
+            $collect = $reader->noHeading()->limitColumns(5)->first()->toArray();
+            $category = $collect[0][1];
+            $items = $reader->skipRows(3)->toArray();
+            $data = [];
+            $category_id = \DB::table('categories')->where('name', $category)->first();
+
+            for ($i=0; $i<count($items[0]); $i++) {
+                array_push($data,[
+                    'category_id'=>$category_id->id,
+                    'lm'=>$items[0][$i][0],
+                    'name'=>$items[0][$i][1],
+                    'free_shipping'=>$items[0][$i][2],
+                    'description'=>$items[0][$i][3],
+                    'price'=>$items[0][$i][4],
+                    'created_at'=>Carbon::now(),
+                    'updated_at'=>Carbon::now()
+                ]);
+            }
+
+            $collection = collect($data);   //turn data into collection
+
+            foreach ($collection as $collect) {            
+                ProcessFile::dispatch(\DB::table('products')
+                    ->insert($collect))
+                    ->onQueue('products'); //insert chunked data
+                    $return[] = $collect;
+            }
+        });
+        return $return;
     }
 
     /**

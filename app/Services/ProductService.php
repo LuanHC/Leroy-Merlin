@@ -60,7 +60,7 @@ class ProductService extends BaseService
      * @param array $data
      * @return Response
      */
-    public function store(array $data)
+    public function store($data)
     {
         try {
             $item = $this->repository->store($data);
@@ -83,7 +83,6 @@ class ProductService extends BaseService
 
         return $this->setStatus(201)
             ->setMessage(__('messages.product.store'))
-            ->item($item, new ProductTransformer(), 'product')
             ->success();
     }
     

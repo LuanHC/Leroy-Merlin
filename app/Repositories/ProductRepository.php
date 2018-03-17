@@ -8,7 +8,7 @@ interface ProductRepository
 
 	function show($include, $id);
 
-	function store(array $attributes);
+	function store($attributes);
 
 	function update(array $attributes, $id);
 
