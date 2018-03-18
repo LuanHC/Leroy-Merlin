@@ -22,7 +22,7 @@ class EloquentProduct implements ProductRepository
     }
 
     /**
-     * Get all.
+     * Get all products.
      *
      * @param array|null $include
      * @return Illuminate\Database\Eloquent\Collection
@@ -35,7 +35,7 @@ class EloquentProduct implements ProductRepository
     }
 
     /**
-     * Get by id.
+     * Get product by id.
      *
      * @param array|null $include
      * @param integer $id
@@ -50,7 +50,7 @@ class EloquentProduct implements ProductRepository
     }
 
     /**
-     * Create new.
+     * Import list product.
      *
      * @param array $attributes
      * @return App\Entities\Product
@@ -92,9 +92,8 @@ class EloquentProduct implements ProductRepository
     }
 
     /**
-     * Update by id.
+     * Update product by id.
      *
-     * @param integer $enterpriseId
      * @param array $attributes
      * @param integer $id
      * @return App\Entities\Product
@@ -108,9 +107,8 @@ class EloquentProduct implements ProductRepository
     }
 
     /**
-     * Destroy by id.
+     * Destroy product by id.
      *
-     * @param integer $enterpriseId
      * @param integer $id
      * @return boolean
      */

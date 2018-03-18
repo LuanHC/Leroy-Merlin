@@ -21,7 +21,7 @@ class EloquentCategory implements CategoryRepository
     }
 
     /**
-     * Get all.
+     * Get all categories.
      *
      * @param array|null $include
      * @return Illuminate\Database\Eloquent\Collection
@@ -34,7 +34,7 @@ class EloquentCategory implements CategoryRepository
     }
 
     /**
-     * Get by id.
+     * Get category by id.
      *
      * @param array|null $include
      * @param integer $id
@@ -49,7 +49,7 @@ class EloquentCategory implements CategoryRepository
     }
 
     /**
-     * Create new.
+     * Create new category.
      *
      * @param array $attributes
      * @return App\Entities\Category
@@ -61,9 +61,8 @@ class EloquentCategory implements CategoryRepository
     }
 
     /**
-     * Update by id.
+     * Update category by id.
      *
-     * @param integer $enterpriseId
      * @param array $attributes
      * @param integer $id
      * @return App\Entities\Category
@@ -77,9 +76,8 @@ class EloquentCategory implements CategoryRepository
     }
 
     /**
-     * Destroy by id.
+     * Destroy category by id.
      *
-     * @param integer $enterpriseId
      * @param integer $id
      * @return boolean
      */

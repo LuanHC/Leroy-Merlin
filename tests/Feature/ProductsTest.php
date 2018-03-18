@@ -17,18 +17,18 @@ class ProductsTest extends TestCase
     protected $response;
 
     /**
-     * Test to show product.
+     * Test to list all products.
      *
      * @return void
      */
-    public function testShowProducts()
+    public function testListProducts()
     {
         $response = $this->call('GET', '/products')
         ->assertStatus(200);
     }
 
     /**
-     * Test to get product.
+     * Test to get specific product.
      *
      * @return void
      */
@@ -39,7 +39,7 @@ class ProductsTest extends TestCase
     }
 
 
-    public function test_upload_works()
+    public function testUploadProducts()
     {
         $stub = __DIR__.'/file/test.xlsx';
         $name = str_random(8).'.xlsx';

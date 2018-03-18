@@ -25,7 +25,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the products.
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
@@ -37,7 +37,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created product in storage.
      *
      * @param  StoreProduct  $request
      * @return \Illuminate\Http\Response
@@ -49,7 +49,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified product.
      *
      * @param Request $request
      * @param  int  $id
@@ -62,7 +62,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified product in storage.
      *
      * @param  UpdateProduct  $request
      * @param  int  $id
@@ -84,7 +84,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified product from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -94,6 +94,12 @@ class ProductController extends Controller
         return $this->service->destroy($id);
     }
 
+
+    /**
+     * Verify if import queue is ended.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function verify()
     {
         $queue = \DB::table('jobs')->where('payload', 'like', '%ProcessFile%')->first();

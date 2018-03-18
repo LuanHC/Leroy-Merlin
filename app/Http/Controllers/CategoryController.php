@@ -27,7 +27,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the categories.
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
@@ -39,7 +39,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created category in storage.
      *
      * @param  StoreCategory  $request
      * @return \Illuminate\Http\Response
@@ -54,7 +54,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified category.
      *
      * @param Request $request
      * @param  int  $id
@@ -67,7 +67,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified category in storage.
      *
      * @param  UpdateCategory  $request
      * @param  int  $id
@@ -84,7 +84,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified category from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -92,16 +92,5 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         return $this->service->destroy($id);
-    }
-
-    public function verify()
-    {
-        $queue = \DB::table('jobs')->where('payload', 'like', '%ProcessFile%')->first();
-
-        if (!empty($queue)) {
-            return 'The report in process';
-        } else {
-            return 'Processed';
-        }
     }
 }

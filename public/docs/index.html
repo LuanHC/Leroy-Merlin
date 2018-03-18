@@ -1,0 +1,621 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/all.js"></script>
+
+
+          <script>
+        $(function() {
+            setupLanguages(["bash","javascript"]);
+        });
+      </script>
+      </head>
+
+  <body class="">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+            <h2>Leroy Merlin Test</h2>
+                    <div class="lang-selector">
+                                  <a href="#" data-language-name="bash">bash</a>
+                                  <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+                            <div class="search">
+              <input type="text" class="search" id="input-search" placeholder="Search">
+            </div>
+            <ul class="search-results"></ul>
+              <div id="toc">
+      </div>
+                    <ul class="toc-footer">
+                                  <li><a href='http://github.com/mpociot/documentarian'>Documentation Powered by Documentarian</a></li>
+                            </ul>
+            </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+          <!-- START_INFO -->
+<h1>Info</h1>
+<p>Welcome to the generated API reference.
+<a href="http://leroymerlin.test/docs/collection.json">Get Postman Collection</a></p>
+<!-- END_INFO -->
+<h1>general</h1>
+<!-- START_dd873464f7c6ace481b7520ef5394dc9 -->
+<h2>Display a listing of the products.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET "http://leroymerlin.test/products" \
+-H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://leroymerlin.test/products",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<blockquote>
+<p>Example response:</p>
+</blockquote>
+<pre><code class="language-json">{
+    "success": true,
+    "status_code": 200,
+    "message": "messages.product.all",
+    "products": [
+        {
+            "id": 1,
+            "category_id": 1,
+            "lm": 1001,
+            "name": "Furadeira X",
+            "free_shipping": 0,
+            "description": "Furadeira eficiente X",
+            "price": 100,
+            "created_at": {
+                "date": "2018-03-18 16:02:51.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            },
+            "updated_at": {
+                "date": "2018-03-18 16:08:43.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            }
+        },
+        {
+            "id": 2,
+            "category_id": 1,
+            "lm": 1002,
+            "name": "Furadeira Y",
+            "free_shipping": 1,
+            "description": "Furadeira super eficiente Y",
+            "price": 140,
+            "created_at": {
+                "date": "2018-03-18 16:02:51.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            },
+            "updated_at": {
+                "date": "2018-03-18 16:02:51.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            }
+        },
+        {
+            "id": 3,
+            "category_id": 1,
+            "lm": 1003,
+            "name": "Chave de Fenda X",
+            "free_shipping": 0,
+            "description": "Chave de fenda simples",
+            "price": 20,
+            "created_at": {
+                "date": "2018-03-18 16:02:51.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            },
+            "updated_at": {
+                "date": "2018-03-18 16:02:51.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            }
+        },
+        {
+            "id": 4,
+            "category_id": 1,
+            "lm": 1008,
+            "name": "Serra de Marmore",
+            "free_shipping": 1,
+            "description": "Serra com 1400W modelo 4100NH2Z-127V-L",
+            "price": 399,
+            "created_at": {
+                "date": "2018-03-18 16:02:51.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            },
+            "updated_at": {
+                "date": "2018-03-18 16:02:51.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            }
+        },
+        {
+            "id": 5,
+            "category_id": 1,
+            "lm": 1009,
+            "name": "Broca Z",
+            "free_shipping": 0,
+            "description": "Broca simples",
+            "price": 3.9,
+            "created_at": {
+                "date": "2018-03-18 16:02:51.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            },
+            "updated_at": {
+                "date": "2018-03-18 16:02:51.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            }
+        },
+        {
+            "id": 6,
+            "category_id": 1,
+            "lm": 1010,
+            "name": "Luvas de Proteção",
+            "free_shipping": 0,
+            "description": "Luva de proteção básica",
+            "price": 5.6,
+            "created_at": {
+                "date": "2018-03-18 16:02:51.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            },
+            "updated_at": {
+                "date": "2018-03-18 16:02:51.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            }
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET products</code></p>
+<p><code>HEAD products</code></p>
+<!-- END_dd873464f7c6ace481b7520ef5394dc9 -->
+<!-- START_e69e3804fa0af1eb523e480d661362b7 -->
+<h2>Store a newly created product in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://leroymerlin.test/products" \
+-H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://leroymerlin.test/products",
+    "method": "POST",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST products</code></p>
+<!-- END_e69e3804fa0af1eb523e480d661362b7 -->
+<!-- START_164b804602a2f6de772150ffba05ba43 -->
+<h2>Display the specified product.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET "http://leroymerlin.test/products/{product}" \
+-H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://leroymerlin.test/products/{product}",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<blockquote>
+<p>Example response:</p>
+</blockquote>
+<pre><code class="language-json">{
+    "success": true,
+    "status_code": 200,
+    "message": "messages.product.show",
+    "product": {
+        "id": 1,
+        "category_id": 1,
+        "lm": 1001,
+        "name": "Furadeira X",
+        "free_shipping": 0,
+        "description": "Furadeira eficiente X",
+        "price": 100,
+        "created_at": {
+            "date": "2018-03-18 16:02:51.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+        },
+        "updated_at": {
+            "date": "2018-03-18 16:08:43.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+        }
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET products/{product}</code></p>
+<p><code>HEAD products/{product}</code></p>
+<!-- END_164b804602a2f6de772150ffba05ba43 -->
+<!-- START_3d6f3cbb4f154b7da4faac30c3380d51 -->
+<h2>Update the specified product in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT "http://leroymerlin.test/products/{product}" \
+-H "Accept: application/json" \
+    -d "id"="voluptate" \
+    -d "category_id"="voluptate" \
+    -d "lm"="voluptate" \
+    -d "name"="voluptate" \
+    -d "free_shipping"="voluptate" \
+    -d "description"="voluptate" \
+    -d "price"="voluptate" \
+</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://leroymerlin.test/products/{product}",
+    "method": "PUT",
+    "data": {
+        "id": "voluptate",
+        "category_id": "voluptate",
+        "lm": "voluptate",
+        "name": "voluptate",
+        "free_shipping": "voluptate",
+        "description": "voluptate",
+        "price": "voluptate"
+},
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT products/{product}</code></p>
+<p><code>PATCH products/{product}</code></p>
+<h4>Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>required</td>
+<td>Valid product id</td>
+</tr>
+<tr>
+<td>category_id</td>
+<td>string</td>
+<td>required</td>
+<td>Valid category id</td>
+</tr>
+<tr>
+<td>lm</td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td>free_shipping</td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
+<!-- END_3d6f3cbb4f154b7da4faac30c3380d51 -->
+<!-- START_9dc19a575e78a6169cad6bda8a2186de -->
+<h2>Remove the specified product from storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE "http://leroymerlin.test/products/{product}" \
+-H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://leroymerlin.test/products/{product}",
+    "method": "DELETE",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE products/{product}</code></p>
+<!-- END_9dc19a575e78a6169cad6bda8a2186de -->
+<!-- START_2f1038cabc13b0dbcd0e043a404758b2 -->
+<h2>Display a listing of the categories.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET "http://leroymerlin.test/categories" \
+-H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://leroymerlin.test/categories",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<blockquote>
+<p>Example response:</p>
+</blockquote>
+<pre><code class="language-json">{
+    "success": true,
+    "status_code": 200,
+    "message": "messages.category.all",
+    "categories": [
+        {
+            "name": "123123"
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET categories</code></p>
+<p><code>HEAD categories</code></p>
+<!-- END_2f1038cabc13b0dbcd0e043a404758b2 -->
+<!-- START_cb37a009c57f6e054e721aada4d9664b -->
+<h2>Store a newly created category in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://leroymerlin.test/categories" \
+-H "Accept: application/json" \
+    -d "name"="dolores" \
+</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://leroymerlin.test/categories",
+    "method": "POST",
+    "data": {
+        "name": "dolores"
+},
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST categories</code></p>
+<h4>Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
+<!-- END_cb37a009c57f6e054e721aada4d9664b -->
+<!-- START_f387be7fc23bca291442057cd2b00065 -->
+<h2>Display the specified category.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET "http://leroymerlin.test/categories/{category}" \
+-H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://leroymerlin.test/categories/{category}",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<blockquote>
+<p>Example response:</p>
+</blockquote>
+<pre><code class="language-json">{
+    "success": true,
+    "status_code": 200,
+    "message": "messages.category.show",
+    "category": {
+        "name": "123123"
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET categories/{category}</code></p>
+<p><code>HEAD categories/{category}</code></p>
+<!-- END_f387be7fc23bca291442057cd2b00065 -->
+<!-- START_5c7692955c3e2542b25146f0d77e3767 -->
+<h2>Update the specified category in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT "http://leroymerlin.test/categories/{category}" \
+-H "Accept: application/json" \
+    -d "id"="veritatis" \
+    -d "name"="veritatis" \
+</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://leroymerlin.test/categories/{category}",
+    "method": "PUT",
+    "data": {
+        "id": "veritatis",
+        "name": "veritatis"
+},
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT categories/{category}</code></p>
+<p><code>PATCH categories/{category}</code></p>
+<h4>Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>required</td>
+<td>Valid category id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
+<!-- END_5c7692955c3e2542b25146f0d77e3767 -->
+<!-- START_c595e22ac497b4ace0ad442feffe7712 -->
+<h2>Remove the specified category from storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE "http://leroymerlin.test/categories/{category}" \
+-H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://leroymerlin.test/categories/{category}",
+    "method": "DELETE",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE categories/{category}</code></p>
+<!-- END_c595e22ac497b4ace0ad442feffe7712 -->
+<!-- START_05316d0ab9b7b56d1e7514c4a1096983 -->
+<h2>Verify if import queue is ended.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET "http://leroymerlin.test/verify" \
+-H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://leroymerlin.test/verify",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<blockquote>
+<p>Example response:</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET verify</code></p>
+<p><code>HEAD verify</code></p>
+<!-- END_05316d0ab9b7b56d1e7514c4a1096983 -->
+      </div>
+      <div class="dark-box">
+                        <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                              </div>
+                </div>
+    </div>
+  </body>
+</html>
