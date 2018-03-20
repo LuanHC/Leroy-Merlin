@@ -6,5 +6,5 @@ Basic system to import file to populate products table
 
 ## Documentation ##
 
-To see documentation, access /public/docs/index.html
+To see documentation, access https://github.com/LuanHC/leroy-merlin.wiki.git
 
