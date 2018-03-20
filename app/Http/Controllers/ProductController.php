@@ -102,7 +102,9 @@ class ProductController extends Controller
      */
     public function verify()
     {
-        $queue = \DB::table('jobs')->where('payload', 'like', '%ProcessFile%')->first();
+        $queue = \DB::table('jobs')
+            ->where('payload', 'like', '%ProcessFile%')
+            ->first();
 
         if (!empty($queue)) {
             return 'The report in process';

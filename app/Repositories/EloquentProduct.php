@@ -60,11 +60,16 @@ class EloquentProduct implements ProductRepository
         $return = array();
         \Excel::load($attributes, function($reader) use (&$return) {
             // Getting all results
-            $collect = $reader->noHeading()->limitColumns(5)->first()->toArray();
+            $collect = $reader->noHeading()
+                ->limitColumns(5)
+                ->first()
+                ->toArray();
             $category = $collect[0][1];
             $items = $reader->skipRows(3)->toArray();
             $data = [];
-            $category_id = \DB::table('categories')->where('name', $category)->first();
+            $category_id = \DB::table('categories')
+                ->where('name', $category)
+                ->first();
 
             for ($i=0; $i<count($items[0]); $i++) {
                 array_push($data,[
